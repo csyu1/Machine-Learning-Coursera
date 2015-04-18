@@ -32,7 +32,7 @@ J = 1/m * J;
 n = rows(theta);
 for j = 1:n
     for i = 1:m
-        a = (hyp(theta,X(i,:)') - y(i));
+        a = (hyp(theta',X(i,:)') - y(i));
         grad(j) = grad(j) + X(i,j)*a;
     endfor
     grad(j) = 1/m * grad(j);
