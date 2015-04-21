@@ -31,6 +31,13 @@ X = [ones(m, 1) X];
 %       
 
 % =========================================================================
+pred = zeros(size(X, 1), num_labels);
 
+for i = 1:m
+    for j = 1:num_labels
+	pred(i,j) = sigmoid(all_theta(j,:)*X(i,:)');
+    endfor
+endfor
 
+[pval p] = max(pred, [], 2);
 end
