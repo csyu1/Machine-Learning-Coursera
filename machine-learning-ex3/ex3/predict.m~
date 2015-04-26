@@ -20,18 +20,19 @@ p = zeros(size(X, 1), 1);
 %       information see 'help max'. If your examples are in rows, then, you
 %       can use max(A, [], 2) to obtain the max for each row.
 %
-
-for i=1:3
+layers = 3
+for i=1:layers
     if i == 1
         a = [ones(m, 1) X];
-
+    elseif i == layers
+        z = a*Theta2';
+        a = sigmoid(z);
+    else
+        z = a*Theta1';
+        a = [ones(m,1) sigmoid(z)]; 
+    endif
 endfor
-a_1 = [ones(m, 1) X];
-z_2 = a_1*Theta1';
-a_2 = [ones(m, 1) sigmoid(z_2)];
-z_3 = a_2*Theta2';
-a_3 = sigmoid(z_3);
-[pval p] = max(a_3, [], 2);
+[pval p] = max(a, [], 2);
 
 
 
